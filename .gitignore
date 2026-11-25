@@ -1,0 +1,33 @@
+# 构建产物
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# 日志
+logs/
+*.log
+
+# 环境与密钥
+.env
+.env.local
+application-local.yaml
+application-local.yml
+
+# 系统
+.DS_Store
+Thumbs.db
+*.swp
+*~

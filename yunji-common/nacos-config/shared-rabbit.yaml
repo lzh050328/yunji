@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    # 集群模式：addresses 优先于 host/port，客户端会自动在节点间切换
+    addresses: ${RABBITMQ_ADDRESSES:localhost:5672}
+    virtual-host: /hmall # 虚拟主机
+    username: ${RABBITMQ_USERNAME:guest} # 用户名
+    password: ${RABBITMQ_PASSWORD:}

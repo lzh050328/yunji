@@ -1,0 +1,9 @@
+hm:
+  db:
+    host: localhost
+    pw: 123
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:localhost:8848}

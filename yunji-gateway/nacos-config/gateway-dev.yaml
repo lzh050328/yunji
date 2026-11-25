@@ -1,0 +1,51 @@
+server:
+  port: 18088
+spring:
+  cloud:
+    gateway:
+      routes:
+        # 商品服务：商品管理 + 搜索
+        - id: item-service
+          uri: lb://item-service
+          predicates:
+            - Path=/items/**,/search/**
+        # 购物车服务
+        - id: cart-service
+          uri: lb://cart-service
+          predicates:
+            - Path=/carts/**
+        # 用户服务：用户 + 收货地址
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**,/addresses/**
+        # 交易服务：订单
+        - id: trade-service
+          uri: lb://trade-service
+          predicates:
+            - Path=/orders/**
+        # 支付服务：支付单
+        - id: pay-service
+          uri: lb://pay-service
+          predicates:
+            - Path=/pay-orders/**
+hm:
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: ${JWT_KEYSTORE_PASSWORD:hmall123}
+    tokenTTL: 30m
+  auth:
+    # 与单体 hm-service 的放行名单保持一致
+    excludePaths:
+      - /search/**
+      - /users/login
+      - /items/**
+      - /hi
+logging:
+  level:
+    com.hmall: debug
+  pattern:
+    dateformat: HH:mm:ss:SSS
+  file:
+    path: "logs/${spring.application.name}"
